@@ -6,5 +6,15 @@ Automatise la signature de présence sur [EdSquare](https://app.edsquare.fr) pou
 
 ## 📦 Installation
 
+Installer les dependances
+
 ```bash
 npm i
+```
+
+Créer le fichier .env et renseigner vos identifiants
+
+```bash
+ED_EMAIL=ton@email.com
+ED_PASSWORD=tonMotDePasse
+```
