@@ -7,6 +7,4 @@ Automatise la signature de présence sur [EdSquare](https://app.edsquare.fr) pou
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/ton-utilisateur/autosign.git
-cd autosign
-npm install
+npm i

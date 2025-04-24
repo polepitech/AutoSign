@@ -4,11 +4,11 @@
   "description": "Signature automatique",
   "type": "module",
   "scripts": {
-     "sign": "node signer.js"
+    "sign": "node signer.js"
   },
   "dependencies": {
-    "puppeteer": "^21.0.0",
     "dotenv": "^16.0.0",
-    "node-fetch": "^3.0.0"
+    "node-fetch": "^3.0.0",
+    "puppeteer": "^24.7.2"
   }
 }

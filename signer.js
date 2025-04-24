@@ -17,9 +17,7 @@ const formData = qs.stringify({
 async function signerPresence() {
   console.log('🔐 Récupération des infos de session...');
   const { csrfToken, cookieHeader } = await getEdSquareSessionData();
-
   
-
   console.log('📨 Envoi de la signature...');
   const response = await fetch('https://app.edsquare.fr/apps/course_user_signatures', {
     method: 'POST',
