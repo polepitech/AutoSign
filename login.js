@@ -5,10 +5,10 @@ const password = process.env.ED_PASSWORD;
 
 
 export async function getEdSquareSessionData() {
-    const browser = await puppeteer.launch({  headless: false,
-      defaultViewport: null,
-      args: ['--start-maximized'] }); 
-    // const browser = await puppeteer.launch({headless:'new'});
+    // const browser = await puppeteer.launch({  headless: false,
+    //   defaultViewport: null,
+    //   args: ['--start-maximized'] }); 
+    const browser = await puppeteer.launch({headless:'new'});
     const page = await browser.newPage();
 
     // Aller à la page de connexion
@@ -48,7 +48,7 @@ export async function getEdSquareSessionData() {
       waitUntil: 'networkidle2'
     });
     
-    console.log('🔍 Recherche de la page de signature...');
+    console.log('🔍 Recherche d\'émargement...');
     await page.waitForSelector('a[data-remote="true"]');
     const link = await page.$('[data-remote="true"]');
 
@@ -64,16 +64,16 @@ export async function getEdSquareSessionData() {
         var planningEventId = await page.$eval('#course_user_signature_planning_event_id', el => el.value);
         console.log('🎯 Emargement trouvé ! id :', planningEventId);
     
+        // Récupérer le token CSRF depuis la balise <meta>
+        var csrfToken = await page.$eval('meta[name="csrf-token"]', el => el.content);
+    
+        // Récupérer les cookies
+        var cookies = await page.cookies();
+        var cookieHeader = cookies.map(c => `${c.name}=${c.value}`).join('; ');
       } catch (err) {
         console.log('❌ Erreur lors de la récupération de l’emargement :', err);
       }
     }
-    // Récupérer le token CSRF depuis la balise <meta>
-    const csrfToken = await page.$eval('meta[name="csrf-token"]', el => el.content);
-
-    // Récupérer les cookies
-    const cookies = await page.cookies();
-    const cookieHeader = cookies.map(c => `${c.name}=${c.value}`).join('; ');
 
     await browser.close();
   return {
